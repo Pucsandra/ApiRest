@@ -31,6 +31,8 @@ try {
     $sql = "DELETE FROM falleros WHERE dni = ?;";
 
     $pdoPreparada = $bd->prepare($sql);
+
+    $objFalla = json_decode(file_get_contents("php://input"));
     $arrParametros = [
         $objFalla->dni
     ];
@@ -46,7 +48,7 @@ try {
     http_response_code(200); 
 
     // respuesta de inserción realizada con éxito
-    $arrInsercion = ["mensaje" => "Fallero $id eliminada con éxito"];
+    $arrInsercion = ["mensaje" => "Fallero $id eliminado con éxito"];
     
     // definimos y enviamos el json con las fallas
     echo json_encode($arrInsercion);

@@ -45,13 +45,11 @@ try {
     $fallero = new Fallero($_POST['dni'],$_POST['nombre'],$_POST['apellidos'],$_POST['cuota'],$_POST['id_falla']);
     $resultado = $pdoPreparada->execute($arrParametros);
 
-    $id = $bd->lastInsertId();
-
     if (!$resultado) throw new Exception('No se ha podido realizar la inserción.<br>');
 
     http_response_code(200); 
 
-    $arrInsercion = ["mensaje" => "Fallero $id creada con éxito"];
+    $arrInsercion = ["mensaje" => 'Fallero ' .$_POST['dni'] .' creada con éxito'];
 
     echo json_encode($arrInsercion);
   

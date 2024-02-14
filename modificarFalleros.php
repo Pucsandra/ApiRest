@@ -53,20 +53,14 @@ try {
     $fallero = new Fallero($dni,$nombre,$apellidos,$cuota,$id_falla);
 
     $resultado = $pdoPreparada->execute($arrParametros);
-   
-    $arrFallero = [
-        "dni" => $fallero->getDni(),
-        "nombre" => $fallero->getNombre(),
-        "apellidos" => $fallero->getApellidos(),
-        "cuota" => $fallero->getCuota(),
-        "id_falla" => $fallero->getId_falla(),
-    ];
-
-    $arrFallero2[] = $arrFallero;
 
     http_response_code(200); 
+    
+    $arrInsercion = ["mensaje" => "Fallero $dni modificado con éxito"];
+    
+    // definimos y enviamos el json con las fallas
+    echo json_encode($arrInsercion);
 
-    echo json_encode($arrFallero2);  
     
 } catch (PDOException $e) {
 
